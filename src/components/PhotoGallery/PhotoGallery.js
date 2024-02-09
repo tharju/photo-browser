@@ -74,9 +74,8 @@ const PhotoGallery = ({ title, getPhotos, onSelect }) => {
     <>
       <TextBlock title={title} />
       <ImageGallery images={photos} onImageClick={handleSelect} />
-
-      <LoadingIndicator loading={loading} />
       <div ref={endElementRef} />
+      <LoadingIndicator loading={loading} completed={completed} />
     </>
   );
 };

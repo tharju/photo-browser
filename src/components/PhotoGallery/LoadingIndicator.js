@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
  * - loading (Boolean): A boolean prop to control the visibility of the loading indicator.
  *   When true, the loading indicator is displayed after a short delay. When false, the indicator is hidden immediately.
  */
-const LoadingIndicator = ({ loading }) => {
+const LoadingIndicator = ({ loading, completed }) => {
   const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const LoadingIndicator = ({ loading }) => {
   return (
     <div className="loader-container">
       {showLoader && <div className="loader" />}
+      {completed && <div>All images retrieved</div>}
     </div>
   );
 };
