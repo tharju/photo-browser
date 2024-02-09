@@ -3,4 +3,8 @@ const getUserId = (pathname) => {
   return isNaN(number) ? null : number;
 };
 
-export { getUserId };
+const delay = (time) => {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
+export { getUserId, delay };
