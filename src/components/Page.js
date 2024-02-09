@@ -15,7 +15,7 @@ const Page = ({ header, children }) => {
     <>
       <Navbar />
       {header}
-      <section className="py-4">
+      <section className="pt-4">
         <div className="container px-5 my-5">
           <div className="row gx-5">
             <div className="col-lg-12">{children}</div>
