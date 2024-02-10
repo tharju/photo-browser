@@ -39,9 +39,11 @@ const getPhotos = async (page) => {
  * Fetches detailed information for a single photo by its ID from Lorem Picsum.
  *
  * @param {number} id - The unique identifier for the photo.
+ * @param {number} [width=1600] - The desired width of the photo. Default is 1600 pixels.
+ * @param {number} [height=1200] - The desired height of the photo. Default is 1200 pixels.
  * @returns {Promise<Object>} A promise that resolves to an object containing detailed information about the photo.
  */
-const getPhoto = async (id) => {
+const getPhoto = async (id, width = 1600, height = 1200) => {
   try {
     const response = await fetch(`https://picsum.photos/id/${id}/info`);
     const photo = await response.json();
@@ -50,7 +52,7 @@ const getPhoto = async (id) => {
       ...photo,
       ...{
         title: `${id} - ${photo.author}`,
-        url: `https://picsum.photos/id/${id}/800/600`,
+        url: `https://picsum.photos/id/${id}/${width}/${height}`,
       },
     };
   } catch (error) {
