@@ -56,10 +56,8 @@ const UserView = () => {
         <tbody>
           {userInfo.map((item, index) => (
             <tr key={index}>
-              <td>
-                <b>{item.label}</b>
-              </td>
-              <td>{item.value}</td>
+              <td className="text-start user-info-label">{item.label}</td>
+              <td className="text-start">{item.value}</td>
             </tr>
           ))}
         </tbody>

@@ -25,6 +25,11 @@ figure img {
   margin-right: 1rem;
 }
 
+.user-info-label {
+  font-weight: bold;
+  width: 110px;
+}
+
 .loader-container {
   display: flex;
   align-items: center;
