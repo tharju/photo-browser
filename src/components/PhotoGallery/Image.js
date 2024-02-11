@@ -18,10 +18,11 @@ const Image = ({ data, onImageClick }) => {
 
   return (
     <div
-      className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12"
+      style={{ "--image-text-content": `"Image ID: ${id}"` }}
+      className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 figure-container"
       onClick={handleClick}
     >
-      <figure>
+      <figure className="figure">
         <img src={thumbnailUrl} alt={`Image from ${thumbnailUrl}`} />
       </figure>
     </div>
