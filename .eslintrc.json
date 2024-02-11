@@ -22,5 +22,5 @@
     }
   },
   "rules": {},
-  "ignorePatterns": ["dist/", "src/assets/","webpack.config.js"]
+  "ignorePatterns": ["dist/", "src/assets/", "webpack.config.js"]
 }

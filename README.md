@@ -1,4 +1,3 @@
-
 # Photo Browser
 
 Photo Browser is a simple web application that represents features common to many real-life applications.
