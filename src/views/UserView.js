@@ -37,66 +37,31 @@ const UserView = () => {
     return null;
   }
 
-  const { name, username, email, address, phone, website, company } = user;
+  const userInfo = [
+    { label: "Name", value: user.name },
+    { label: "Username", value: user.username },
+    { label: "Email", value: user.email },
+    {
+      label: "Address",
+      value: `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`,
+    },
+    { label: "Phone", value: user.phone },
+    { label: "Website", value: user.website },
+    { label: "Company", value: user.company.name },
+  ];
 
   return (
     <div>
       <table className="table">
         <tbody>
-          <tr>
-            <td>
-              <b>Name</b>
-            </td>
-            <td>{name}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Username</b>
-            </td>
-            <td>{username}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Email</b>
-            </td>
-            <td>{email}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Address</b>
-            </td>
-            <td>{address.street}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>{address.suite}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>{address.city}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>{address.zipcode}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Phone</b>
-            </td>
-            <td>{phone}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Phone</b>
-            </td>
-            <td>{website}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Company</b>
-            </td>
-            <td>{company.name}</td>
-          </tr>
+          {userInfo.map((item, index) => (
+            <tr key={index}>
+              <td>
+                <b>{item.label}</b>
+              </td>
+              <td>{item.value}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
