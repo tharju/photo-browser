@@ -9,30 +9,25 @@
  * @returns {Promise<Array>} A promise that resolves to an array of photo objects.
  */
 const getPhotos = async (page) => {
-  try {
-    const firstImage = (page - 1) * 100 + 1;
+  const firstImage = (page - 1) * 100 + 1;
+  console.log(
+    `Load photos: ${firstImage} - ${firstImage + 99} ( from picsum.photos )`,
+  );
 
-    console.log(
-      `Load photos: ${firstImage} - ${firstImage + 99} ( from picsum.photos )`,
-    );
+  const response = await fetch(
+    `https://picsum.photos/v2/list?page=${page}&limit=100`,
+  );
+  const photos = await response.json();
 
-    const response = await fetch(
-      `https://picsum.photos/v2/list?page=${page}&limit=100`,
-    );
-    const photos = await response.json();
 
-    return photos.map((photo) => {
-      return {
-        ...photo,
-        ...{
-          thumbnailUrl: "https://picsum.photos/id/" + photo.id + "/200/150",
-        },
-      };
-    });
-  } catch (error) {
-    console.log("ERROR: ", error);
-    throw error;
-  }
+  return photos.map((photo) => {
+    return {
+      ...photo,
+      ...{
+        thumbnailUrl: "https://picsum.photos/id/" + photo.id + "/200/150",
+      },
+    };
+  });
 };
 
 /**
@@ -44,21 +39,16 @@ const getPhotos = async (page) => {
  * @returns {Promise<Object>} A promise that resolves to an object containing detailed information about the photo.
  */
 const getPhoto = async (id, width = 1600, height = 1200) => {
-  try {
-    const response = await fetch(`https://picsum.photos/id/${id}/info`);
-    const photo = await response.json();
+  const response = await fetch(`https://picsum.photos/id/${id}/info`);
+  const photo = await response.json();
 
-    return {
-      ...photo,
-      ...{
-        title: `${id} - ${photo.author}`,
-        url: `https://picsum.photos/id/${id}/${width}/${height}`,
-      },
-    };
-  } catch (error) {
-    console.log("ERROR: ", error);
-    throw error;
-  }
+  return {
+    ...photo,
+    ...{
+      title: `${id} - ${photo.author}`,
+      url: `https://picsum.photos/id/${id}/${width}/${height}`,
+    },
+  };
 };
 
 export { getPhotos, getPhoto };

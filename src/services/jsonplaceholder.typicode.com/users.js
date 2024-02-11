@@ -8,15 +8,10 @@
  * @returns {Promise<Array>} A promise that resolves to an array of user objects.
  */
 const getUsers = async () => {
-  try {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/users?_limit=100`,
-    );
-    return await response.json();
-  } catch (error) {
-    console.log("ERROR: ", error);
-    throw error;
-  }
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/users?_limit=100`,
+  );
+  return await response.json();
 };
 
 /**
@@ -26,15 +21,10 @@ const getUsers = async () => {
  * @returns {Promise<Object>} A promise that resolves to an object containing detailed information about the user.
  */
 const getUser = async (id) => {
-  try {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/users/${id}`,
-    );
-    return await response.json();
-  } catch (error) {
-    console.log("ERROR: ", error);
-    throw error;
-  }
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${id}`,
+  );
+  return await response.json();
 };
 
 export { getUsers, getUser };
