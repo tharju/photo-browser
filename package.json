@@ -8,8 +8,7 @@
     "build": "webpack --mode production",
     "eslint": "eslint .",
     "eslint:fix": "eslint --fix .",
-    "prettier": "prettier src",
-    "prettier:fix": "prettier --write src"
+    "prettier": "prettier --write ."
   },
   "author": "Timo Harju",
   "license": "MIT",
