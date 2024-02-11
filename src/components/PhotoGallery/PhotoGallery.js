@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import TextBlock from "../TextBlock";
 import ImageGallery from "./ImageGallery";
 import LoadingIndicator from "./LoadingIndicator";
+import { delay } from "../../utilities/Utilities";
 
 /**
  * PhotoGallery Component
@@ -25,34 +26,48 @@ const PhotoGallery = ({ title, getPhotos, onSelect }) => {
   // An end element that starts reloading images.
   const endElementRef = useRef(null);
 
+  // Function to fetch images.
+  const fetchPhotos = async () => {
+    setLoading(true);
+
+    try {
+      // Fetch images based on the current page.
+      const photos = await getPhotos(page);
+
+      if (photos && photos.length === 0) {
+        // All images retrieved from the server, mark the operation as completed.
+        setCompleted(true);
+        setLoading(false);
+        console.log("********** All images retrieved from the server");
+        return;
+      }
+
+      // Update photos and page.
+      setPhotos((currentPhotos) => [...currentPhotos, ...photos]);
+      setPage((currentPage) => currentPage + 1);
+
+      setLoading(false);
+    } catch (error) {
+      console.error("Failed to fetch photos:", error.message);
+
+      // TODO: Implement a retry counter to stop retrieving after a certain number of retries!
+
+      // Try again after 5 s.
+      await delay(5000);
+      fetchPhotos();
+    } finally {
+      //setLoading(false);
+    }
+  };
+
   // Dynamic loading of images.
   useEffect(() => {
     // Set the observer to follow end element.
     const observer = new IntersectionObserver(
       (entries) => {
         if (!completed && entries[0].isIntersecting && !loading) {
-          setLoading(true);
-
-          // Start fetching images based on the current page.
-          getPhotos(page)
-            .then((photos) => {
-              if (photos && photos.length === 0) {
-                // All images retrieved from the server, mark the operation as completed.
-                setCompleted(true);
-                setLoading(false);
-
-                console.log("********** All images retrieved from the server");
-                return;
-              }
-
-              setPhotos((currentPhotos) => [...currentPhotos, ...photos]);
-              setPage((currentPage) => currentPage + 1);
-
-              setLoading(false);
-            })
-            .catch((error) => {
-              console.error("Failed to fetch photos:", error);
-            });
+          // End element visible, start fetching images.
+          fetchPhotos();
         }
       },
       { threshold: 1.0 },
