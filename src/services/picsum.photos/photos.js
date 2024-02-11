@@ -19,7 +19,6 @@ const getPhotos = async (page) => {
   );
   const photos = await response.json();
 
-
   return photos.map((photo) => {
     return {
       ...photo,
