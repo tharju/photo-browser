@@ -21,22 +21,8 @@ const Image = ({ data, onImageClick }) => {
       className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12"
       onClick={handleClick}
     >
-      <figure className="figure">
-        <a
-          href="#"
-          className="gallery-image-link"
-          itemProp="contentUrl"
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <img
-            src={thumbnailUrl}
-            itemProp="thumbnail"
-            alt="Image description"
-            style={{ width: "100%" }}
-          />
-        </a>
+      <figure>
+        <img src={thumbnailUrl} alt={`Image from ${thumbnailUrl}`} />
       </figure>
     </div>
   );
