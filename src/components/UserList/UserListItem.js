@@ -19,11 +19,11 @@ const UserListItem = ({ user, isActive, onSelect }) => {
     onSelect(id);
   };
 
-  const classes = `list-group-item d-flex align-items-center mb-1 user-list-item ${isActive ? "active" : ""}`;
+  const classes = `list-group-item d-flex align-items-center mb-1 ${isActive ? "active" : ""}`;
 
   return (
     <li className={classes} onClick={handleSelect} tabIndex="0">
-      <div style={{ border: "1px solid #ccc", marginRight: "1rem" }}>
+      <div className="user-list-item">
         <img className="rounded" src={userSvg} alt="..." />
       </div>
       <div className="small">

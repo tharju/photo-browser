@@ -21,16 +21,9 @@ figure img {
   user-select: none;
 }
 
-.list-group-item + .list-group-item {
-  border-top-width: 1px;
+.user-list-item {
+  margin-right: 1rem;
 }
-
-/*
-.list-group-item:hover {
-  background-color: #f8f9fa;
-  border: 1px solid #ccc;
-}
-*/
 
 .loader-container {
   display: flex;
