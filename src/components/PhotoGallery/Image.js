@@ -23,7 +23,11 @@ const Image = ({ data, onImageClick }) => {
       onClick={handleClick}
     >
       <figure className="figure">
-        <img src={thumbnailUrl} alt={`Image from ${thumbnailUrl}`} loading="lazy" />
+        <img
+          src={thumbnailUrl}
+          alt={`Image from ${thumbnailUrl}`}
+          loading="lazy"
+        />
       </figure>
     </div>
   );
