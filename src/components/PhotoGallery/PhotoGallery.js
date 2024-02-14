@@ -31,8 +31,8 @@ const PhotoGallery = ({ title, getPhotos, onSelect }) => {
     setLoading(true);
 
     try {
-      // Fetch images based on the current page.
-      const photos = await getPhotos(page);
+      // Fetch images based on the current page. Limit fetching to 20 per page.
+      const photos = await getPhotos(page, 20);
 
       if (photos && photos.length === 0) {
         // All images retrieved from the server, mark the operation as completed.

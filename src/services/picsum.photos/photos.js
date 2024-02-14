@@ -6,16 +6,17 @@
  * Fetches a list of photos from Lorem Picsum based on pagination.
  *
  * @param {number} page - The current page number for pagination.
+ * @param {number} limit - The number of photos to fetch per page.
  * @returns {Promise<Array>} A promise that resolves to an array of photo objects.
  */
-const getPhotos = async (page) => {
-  const firstImage = (page - 1) * 100 + 1;
+const getPhotos = async (page, limit) => {
+  const firstImage = (page - 1) * limit + 1;
   console.log(
-    `Load photos: ${firstImage} - ${firstImage + 99} ( from picsum.photos )`,
+    `Load photos: ${firstImage} - ${firstImage + limit - 1} ( from picsum.photos )`,
   );
 
   const response = await fetch(
-    `https://picsum.photos/v2/list?page=${page}&limit=100`,
+    `https://picsum.photos/v2/list?page=${page}&limit=${limit}`,
   );
   const photos = await response.json();
 

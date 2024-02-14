@@ -6,16 +6,17 @@
  * Fetches a list of photos from JSONPlaceholder based on pagination.
  *
  * @param {number} page - The current page number for pagination.
+ * @param {number} limit - The number of photos to fetch per page.
  * @returns {Promise<Array>} A promise that resolves to an array of photo objects.
  */
-const getPhotos = async (page) => {
-  const firstImage = (page - 1) * 100 + 1;
+const getPhotos = async (page, limit) => {
+  const firstImage = (page - 1) * limit + 1;
   console.log(
-    `Load photos: ${firstImage} - ${firstImage + 99} ( from jsonplaceholder.typicode.com )`,
+    `Load photos: ${firstImage} - ${firstImage + limit - 1} ( from jsonplaceholder.typicode.com )`,
   );
 
   const response = await fetch(
-    `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=100`,
+    `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${limit}`,
   );
   return await response.json();
 };
