@@ -37,12 +37,6 @@ const HomeView = () => {
         <Link to="/placeholders/">here</Link>.
       </p>
 
-      <h2 className="h5">Users</h2>
-      <p className="mb-5">
-        A view that lists users. You can select an individual user, and their
-        information will be displayed in their own view. You can open the view{" "}
-        <Link to="/users/">here</Link>.
-      </p>
       <hr />
       <p className="mb-0 text-muted">
         The application has been implemented for a technical interview at
